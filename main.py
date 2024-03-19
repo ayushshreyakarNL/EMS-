@@ -1,5 +1,6 @@
 from functionality import *
 from validation import *
+import sys
 
 # Main function
 def main():
@@ -23,7 +24,9 @@ def main():
         print("15. Search employees by tech stack")
         print("16. Search employees by project name")
         print("17. Sort employees by salary")
-        print("18. Exit")
+        print("18. Export data to csv")
+        print("19. Import data from csv")
+        print("20. Exit")
         choice = int(input("Enter your choice: "))
 
         if choice == 1:
@@ -61,6 +64,10 @@ def main():
         elif choice == 17:
             sort_employees_by_salary()
         elif choice == 18:
+            export_data_to_csv()
+        elif choice == 19:
+            add_employees_from_csv()
+        elif choice == 20:
             print("Exiting...")
             break
         else:
