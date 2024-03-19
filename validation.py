@@ -23,10 +23,7 @@ def validate_age(age):
 def validate_salary(salary):
     try:
         salary = float(salary)
-        if salary >= 0:  # Assuming salary cannot be negative
-            return True
-        else:
-            return False
+        return salary >= 10000
     except ValueError:
         return False
 
@@ -44,3 +41,6 @@ def validate_employee_id(employee_id):
 # Validate gender
 def validate_gender(gender):
     return gender.lower() in ['male', 'female', 'other']
+
+def validate_name(name):
+    return bool(re.match(r'^[a-zA-Z]+(?: [a-zA-Z]+)*$', name))
