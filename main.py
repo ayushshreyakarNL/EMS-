@@ -13,20 +13,19 @@ def main():
         print("4. Delete employee record")
         print("5. List all employees")
         print("6. Calculate total salary at monthly level")
-        print("7. Assign project to employee")
-        print("8. Update employee project")
-        print("9. View employee's project details")
-        print("10. Assign manager to employee")
-        print("11. View manager details of any employee")
-        print("12. Add tech stack for employees")
-        print("13. View employee's known tech stack")
-        print("14. Search employees by name")
-        print("15. Search employees by tech stack")
-        print("16. Search employees by project name")
-        print("17. Sort employees by salary")
-        print("18. Export data to csv")
-        print("19. Import data from csv")
-        print("20. Exit")
+        print("7. Update employee project")
+        print("8. View employee's project details")
+        print("9. Assign manager to employee")
+        print("10. View manager details of any employee")
+        print("11. Add tech stack for employees")
+        print("12. View employee's known tech stack")
+        print("13. Search employees by name")
+        print("14. Search employees by tech stack")
+        print("15. Search employees by project name")
+        print("16. Sort employees by salary")
+        print("17. Export data to csv")
+        print("18. Import data from csv")
+        print("19. Exit")
         choice = int(input("Enter your choice: "))
 
         if choice == 1:
@@ -42,32 +41,30 @@ def main():
         elif choice == 6:
             calculate_total_salary()
         elif choice == 7:
-            assign_project()
-        elif choice == 8:
             update_employee_project()
-        elif choice == 9:
+        elif choice == 8:
             view_employee_projects()
-        elif choice == 10:
+        elif choice == 9:
             assign_manager()
-        elif choice == 11:
+        elif choice == 10:
             view_manager_details()
-        elif choice == 12:
+        elif choice == 11:
             add_tech_stack()
-        elif choice == 13:
+        elif choice == 12:
             view_employee_tech_stack()
-        elif choice == 14:
+        elif choice == 13:
             search_employee_by_name()
-        elif choice == 15:
+        elif choice == 14:
             search_employee_by_tech_stack()
-        elif choice == 16:
+        elif choice == 15:
             search_employee_by_project()
-        elif choice == 17:
+        elif choice == 16:
             sort_employees_by_salary()
-        elif choice == 18:
+        elif choice == 17:
             export_data_to_csv()
-        elif choice == 19:
+        elif choice == 18:
             add_employees_from_csv()
-        elif choice == 20:
+        elif choice == 19:
             print("Exiting...")
             break
         else:
