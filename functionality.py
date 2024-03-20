@@ -440,31 +440,6 @@ def view_employee_projects():
         except ValueError:
             print("Invalid Employee ID. Please enter a valid ID.")
 
-
-# Assign project to employee
-def assign_project():
-    while True:
-        try:
-            employee_id = input("Enter employee ID: ")
-            if not validate_employee_id(employee_id):
-                print("Invalid Employee ID. Please enter a valid ID.")
-                continue
-            select_query = "SELECT name FROM employees WHERE id = %s AND deleted = 0"
-            cursor.execute(select_query, (employee_id,))
-            if cursor.fetchone():
-                new_project = input("Enter new project: ")
-
-                update_query = "UPDATE employees SET project = CONCAT(project, ', ', %s) WHERE id = %s"
-                cursor.execute(update_query, (new_project, employee_id))
-                db_connection.commit()
-                print("Project assigned successfully!")
-                break
-            else:
-                print("Employee ID not found. Please enter a valid ID.")
-        except ValueError:
-            print("Invalid Employee ID. Please enter a valid ID.")
-
-
 # Update employee's project details (past project details should remain)
 def update_employee_project():
     while True:
@@ -476,7 +451,10 @@ def update_employee_project():
             select_query = "SELECT name FROM employees WHERE id = %s AND deleted = 0"
             cursor.execute(select_query, (employee_id,))
             if cursor.fetchone():
-                new_project = input("Enter new project: ")
+                new_project = input("Enter new project: ").strip()
+                if not new_project:
+                    print("Project cannot be blank.")
+                    continue
 
                 update_query = "UPDATE employees SET project = CONCAT(project, ', ', %s) WHERE id = %s"
                 cursor.execute(update_query, (new_project, employee_id))
@@ -488,8 +466,6 @@ def update_employee_project():
         except ValueError:
             print("Invalid Employee ID. Please enter a valid ID.")
 
-
-# Assign a manager to an employee
 def assign_manager():
     while True:
         try:
@@ -500,7 +476,10 @@ def assign_manager():
             select_query = "SELECT name FROM employees WHERE id = %s AND deleted = 0"
             cursor.execute(select_query, (employee_id,))
             if cursor.fetchone():
-                new_manager = input("Enter new manager: ")
+                new_manager = input("Enter new manager: ").strip()
+                if not new_manager:
+                    print("Manager name cannot be blank.")
+                    continue
 
                 update_query = "UPDATE employees SET manager = %s WHERE id = %s"
                 cursor.execute(update_query, (new_manager, employee_id))
@@ -541,7 +520,10 @@ def add_tech_stack():
             if employee:
                 name, education_details, current_tech_stack = employee
                 if "B.Tech" in education_details or "M.Tech" in education_details:
-                    new_tech_stack = input("Enter tech stack to add: ")
+                    new_tech_stack = input("Enter tech stack to add: ").strip()
+                    if not new_tech_stack:
+                        print("Tech stack cannot be blank.")
+                        continue
 
                     if current_tech_stack:
                         updated_tech_stack = current_tech_stack + ', ' + new_tech_stack
@@ -559,6 +541,7 @@ def add_tech_stack():
                 print("Employee ID not found. Please enter a valid ID.")
         except ValueError:
             print("Invalid Employee ID. Please enter a valid ID.")
+
 
 
 
