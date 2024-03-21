@@ -3,7 +3,7 @@ import mysql.connector
 from db_connection import *
 from validation import *
 import csv
-
+import sys
 
 
 # Add a new employee
@@ -566,11 +566,17 @@ def view_employee_tech_stack():
             print("Invalid Employee ID. Please enter a valid ID.")
 
 
+
+
 # Search employees by name
 def search_employee_by_name():
     while True:
         try:
-            employee_name = input("Enter employee name: ")
+            employee_name = input("Enter employee name: ").strip()  # Remove leading/trailing whitespace
+            if not employee_name:
+                print("Employee name cannot be empty. Please enter a valid name.")
+                continue
+
             select_query = "SELECT * FROM employees WHERE name LIKE %s AND deleted = 0"
             cursor.execute(select_query, ('%' + employee_name + '%',))
             employees = cursor.fetchall()
@@ -594,7 +600,11 @@ def search_employee_by_name():
 def search_employee_by_tech_stack():
     while True:
         try:
-            tech_stack = input("Enter tech stack: ")
+            tech_stack = input("Enter tech stack: ").strip()  # Remove leading/trailing whitespace
+            if not tech_stack:
+                print("Tech stack cannot be empty. Please enter a valid tech stack.")
+                continue
+
             select_query = "SELECT * FROM employees WHERE tech_stack LIKE %s AND deleted = 0"
             cursor.execute(select_query, ('%' + tech_stack + '%',))
             employees = cursor.fetchall()
@@ -618,7 +628,11 @@ def search_employee_by_tech_stack():
 def search_employee_by_project():
     while True:
         try:
-            project_name = input("Enter project name: ")
+            project_name = input("Enter project name: ").strip()  # Remove leading/trailing whitespace
+            if not project_name:
+                print("Project name cannot be empty. Please enter a valid project name.")
+                continue
+
             select_query = "SELECT * FROM employees WHERE project LIKE %s AND deleted = 0"
             cursor.execute(select_query, ('%' + project_name + '%',))
             employees = cursor.fetchall()
